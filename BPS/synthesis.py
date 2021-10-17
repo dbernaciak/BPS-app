@@ -71,3 +71,20 @@ def synthesise_2_agents(cor, r_1, r_2, d, agent1, agent2, q1, q2):
 
     mix = lambda x: a0 * st.norm.pdf(x) + a1(x) * agent1.pdf(x) + a2(x) * agent2.pdf(x)
     return mix
+
+
+def synthesise_2_agents_fast(cor, r_1, r_2, d, agent1, agent2, q1, q2, xs):
+    ys = np.arange(-5,5,0.1)
+    xv, yv = np.meshgrid(xs, ys)
+    alp = alpha(0, 1, cor, 0, r_1, r_2, d, yv, xv)
+    a1 = alp * agent2.pdf(xv)
+    a1_v = (q1 * a1.sum(axis=1) * (xs[1] - xs[0]))
+    a2 = alp * agent1.pdf(xv)
+    a2_v = (q2 * a2.sum(axis=1) * (xs[1] - xs[0]))
+
+    x3_grid = np.arange(-6, 6, 0.01)
+    xv, yv = np.meshgrid(x3_grid, x3_grid)
+    alp2 = alpha(0, 1, cor, 0, r_1, r_2, 1, yv, xv)
+    a0 = ((1 - q1 * alp2 - q2 * alp2.T) * agent1.pdf(yv) * agent2.pdf(xv)).sum() * (x3_grid[1] - x3_grid[0]) ** 2
+
+    return a0 * st.norm.pdf(ys) + a1_v * agent1.pdf(ys) + a2_v * agent2.pdf(ys)

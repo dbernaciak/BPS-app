@@ -15,3 +15,11 @@ def plot_2_agents(axis, xs, mix, agent1, agent2):
     axis.plot(xs, agent1.pdf(xs), c="tab:orange", linestyle="--", label="agent 1")
     axis.plot(xs, agent2.pdf(xs), c="tab:purple", linestyle="--", label="agent 2")
     axis.legend()
+
+
+def plot_2_agents_fast(axis, xs, mix, agent1, agent2):
+    axis.plot(xs, st.norm.pdf(xs), c="tab:blue", label="prior")
+    axis.plot(xs, mix, c="tab:red", label="posterior")
+    axis.plot(xs, agent1.pdf(xs), c="tab:orange", linestyle="--", label="agent 1")
+    axis.plot(xs, agent2.pdf(xs), c="tab:purple", linestyle="--", label="agent 2")
+    axis.legend()
