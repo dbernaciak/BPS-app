@@ -5,4 +5,4 @@ Based on Bayesian Predictive Synthesis: Forecast Calibration and Combination'' (
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dbernaciak/BPS-app/main?urlpath=voila%2Frender%2Fbps_app.ipynb)
 
 ## Example with two correlated agents
-[![Binder](https://mybinder.org/badge_logo.svg)](htt
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dbernaciak/BPS-app/main?urlpath=voila%2Frender%2Fbps_app2.ipynb)
